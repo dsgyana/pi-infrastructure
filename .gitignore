@@ -9,6 +9,12 @@
 !.env.template
 !.env.example
 
+# Cloudflare Tunnel credentials and configs
+cloudflare-tunnel/config/config.yml
+cloudflare-tunnel/credentials/
+*.json
+credentials.json
+
 # Temporary environment files
 .env.local
 .env.production
@@ -36,6 +42,10 @@ logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Cloudflare Tunnel logs
+cloudflare-tunnel/logs/
+tunnel.log
 
 # Runtime data
 pids/

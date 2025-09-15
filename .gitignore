@@ -1,0 +1,174 @@
+# Pi Infrastructure - .gitignore
+
+# =============================================================================
+# SECRETS AND ENVIRONMENT FILES
+# =============================================================================
+# Never commit actual environment files with real passwords
+.env
+*.env
+!.env.template
+!.env.example
+
+# Temporary environment files
+.env.local
+.env.production
+.env.staging
+
+# =============================================================================
+# DOCKER AND INFRASTRUCTURE
+# =============================================================================
+# Docker volumes and data
+postgres_data/
+postgres_backups/
+*/postgres_data/
+*/postgres_backups/
+
+# Docker compose override files (may contain secrets)
+docker-compose.override.yml
+docker-compose.production.local.yml
+
+# =============================================================================
+# LOGS AND RUNTIME FILES
+# =============================================================================
+# Application logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# =============================================================================
+# BACKUP AND TEMPORARY FILES
+# =============================================================================
+# Database backups (may contain sensitive data)
+*.sql
+*.dump
+backups/
+*.backup
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# =============================================================================
+# SSH AND SECURITY FILES
+# =============================================================================
+# SSH keys (should never be in version control)
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+*.pub
+
+# SSL certificates
+*.crt
+*.cert
+*.cer
+*.der
+
+# =============================================================================
+# EDITOR AND IDE FILES
+# =============================================================================
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# =============================================================================
+# SYSTEM AND PACKAGE FILES
+# =============================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# =============================================================================
+# DEPLOYMENT AND CI/CD
+# =============================================================================
+# Deployment artifacts
+dist/
+build/
+*.tar.gz
+*.zip
+
+# CI/CD temporary files
+.github/workflows/*.log
+
+# =============================================================================
+# PROJECT SPECIFIC
+# =============================================================================
+# Local development overrides
+docker-compose.local.yml
+local-config/
+
+# Pi-specific files that shouldn't be synced
+pi-local/
+*.pi-local
+
+# Testing and coverage reports
+coverage/
+*.coverage
+.nyc_output/
+
+# Node modules (if any Node.js tools are added later)
+node_modules/
+npm-debug.log*
+
+# Python (if any Python scripts are added)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# =============================================================================
+# DOCUMENTATION ARTIFACTS
+# =============================================================================
+# Generated documentation
+docs/build/
+docs/_build/
+site/

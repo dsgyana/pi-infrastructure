@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # Shared PostgreSQL Database for Pi applications
+  postgres:
+    image: postgres:15-alpine
+    container_name: pi_shared_postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_ADMIN_DB:-postgres}
+      POSTGRES_USER: ${POSTGRES_ADMIN_USER:-pi_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_ADMIN_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - postgres_backups:/backups
+      - ../scripts/init-databases.sql:/docker-entrypoint-initdb.d/init-databases.sql:ro
+    networks:
+      - pi_shared_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_ADMIN_USER:-pi_admin}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  pi_shared_network:
+    driver: bridge
+    name: pi_shared_network
+
+volumes:
+  postgres_data:
+    driver: local
+  postgres_backups:
+    driver: local
